@@ -1,0 +1,15 @@
+[Unit]
+Description=MLX90614 Prometheus Exporter
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/usr/local/bin
+ExecStart=/usr/bin/python3 /usr/local/bin/mlx-exporter.py -b 1 -d 0x5A -p 8000 -3
+Restart=always
+RestartSec=5s
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target
